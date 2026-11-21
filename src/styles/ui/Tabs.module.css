@@ -1,0 +1,56 @@
+/* Segmented tabs — white tray, maroon selected pill (see .claude/DESIGN.md) */
+.list {
+  display: inline-flex;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-white);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.tab {
+  min-width: 140px;
+  height: 44px;
+  padding: 0 var(--space-24);
+  border: 0;
+  border-radius: var(--radius-tile);
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+
+.tab[aria-selected='true'] {
+  background: var(--maroon);
+  color: var(--text-on-dark);
+  box-shadow: 0 4px 12px rgba(122, 20, 36, 0.25);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab[aria-selected='false']:hover {
+    background: var(--bg-gray);
+    color: var(--text-primary);
+  }
+}
+
+@media (max-width: 560px) {
+  .list {
+    display: flex;
+    width: 100%;
+  }
+
+  .tab {
+    flex: 1;
+    min-width: 0;
+  }
+}

@@ -1,0 +1,28 @@
+.reveal {
+  opacity: 0;
+  transition: opacity var(--duration-reveal) var(--ease-out), transform var(--duration-reveal) var(--ease-out);
+}
+
+.up {
+  transform: translateY(24px);
+}
+
+.left {
+  transform: translateX(-40px);
+}
+
+.right {
+  transform: translateX(40px);
+}
+
+.shown {
+  opacity: 1;
+  transform: none;
+}
+
+/* reduced motion: no movement — content simply appears */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transform: none;
+  }
+}

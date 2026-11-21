@@ -1,0 +1,108 @@
+/* Year index — same numbered rows as the SubPage points list */
+.index {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.index li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-24);
+  padding: var(--space-16) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.number {
+  flex: none;
+  width: 48px;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  color: var(--maroon);
+}
+
+.yearLink {
+  flex: 1;
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-primary);
+  transition: color 0.2s ease-out;
+}
+
+.yearLink:hover {
+  color: var(--maroon);
+}
+
+.count {
+  flex: none;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Year blocks */
+.years {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+}
+
+.year {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.yearTitle {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-16);
+  padding-bottom: var(--space-16);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}
+
+/* "Load more" sits centred under the year's items */
+.more {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-8);
+}
+
+.cards,
+.links {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* three PDF cards per row */
+.cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-24);
+}
+
+/* two Facebook rows per row */
+.links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-12) var(--space-24);
+}
+
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .links {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 440px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

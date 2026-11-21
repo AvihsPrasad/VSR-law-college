@@ -1,0 +1,104 @@
+.marquee {
+  overflow: hidden;
+  padding: 36px 0;
+  /* fade the strip out at both edges */
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+
+/* let visitors read an item by pausing on hover */
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+.affList {
+  display: flex;
+  flex: none;
+  gap: var(--space-64);
+  /* trailing gap equals the inner gap so the two copies join seamlessly */
+  padding-right: var(--space-64);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* reduced motion: a static, wrapped, centred list instead of the loop */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    mask-image: none;
+  }
+
+  .track {
+    width: auto;
+    animation: none;
+  }
+
+  .affList {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-16) var(--space-32);
+    width: 100%;
+    padding: 0 var(--gutter);
+  }
+
+  .affList[aria-hidden] {
+    display: none;
+  }
+}
+
+.affList li {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.affList li:hover {
+  color: var(--maroon);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-48);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  align-items: center;
+  gap: var(--space-64);
+}
+
+.photo {
+  width: 100%;
+  height: 540px;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo {
+    height: 420px;
+  }
+}
+
+

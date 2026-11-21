@@ -1,0 +1,56 @@
+/* tabs sit centred on the white band right under the page header */
+.tabBar {
+  padding-top: var(--space-64);
+  text-align: center;
+}
+
+/* the first panel section continues the same white band, so trim its top gap */
+.panel > section:first-child {
+  padding-top: var(--space-64);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-96);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+/* accreditation documents: two cards per row, like the R&D SubPages */
+.documents {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 440px) {
+  .documents {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-48);
+  }
+}
+
+@media (max-width: 760px) {
+  .tabBar {
+    padding-top: var(--space-48);
+  }
+
+  .panel > section:first-child {
+    padding-top: var(--space-48);
+  }
+}

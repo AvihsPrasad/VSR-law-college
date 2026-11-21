@@ -1,0 +1,50 @@
+.banner {
+  padding-top: var(--space-64);
+  padding-bottom: var(--space-64);
+  background: var(--maroon-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.crumbs {
+  display: flex;
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon);
+}
+
+.crumbs {
+  flex-wrap: wrap;
+}
+
+.trail {
+  display: inline-flex;
+  gap: var(--space-8);
+  color: var(--text-secondary);
+}
+
+.crumbs a {
+  color: var(--text-secondary);
+}
+
+.crumbs a:hover {
+  color: var(--maroon);
+}
+
+.title {
+  max-width: 760px;
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 760px) {
+  .banner {
+    padding-top: var(--space-48);
+    padding-bottom: var(--space-48);
+  }
+}

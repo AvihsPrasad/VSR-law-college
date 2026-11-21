@@ -1,0 +1,10 @@
+.hl {
+  color: var(--maroon);
+  text-decoration: underline;
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.16em;
+}
+
+.onDark {
+  color: var(--text-on-dark);
+}

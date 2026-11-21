@@ -1,0 +1,244 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--text-primary);
+  background: var(--bg-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 3px;
+}
+
+/* shared layout + type helpers */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.section {
+  padding-top: var(--space-96);
+  padding-bottom: var(--space-96);
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding-top: var(--space-64);
+    padding-bottom: var(--space-64);
+  }
+}
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  line-height: 1.2;
+}
+
+.h2 {
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.body {
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.small {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* Section backgrounds — pages alternate these (see .claude/DESIGN.md §2).
+   --section-bg lets children (frames, rings) match whatever band they sit on. */
+.bg-white {
+  --section-bg: var(--bg-white);
+  background: var(--section-bg);
+}
+
+.bg-gray {
+  --section-bg: var(--bg-gray);
+  background: var(--section-bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---- scroll reveals ----
+   A section with `data-reveal` (+ useReveal ref) gets `.is-revealed` when it scrolls into view.
+   Hidden states only apply inside [data-reveal], so nothing can get stuck invisible.
+   Keyframes with `backwards` fill (not transitions) so that once the entrance finishes the
+   element's own hover transitions/transforms work normally again. */
+[data-reveal]:not(.is-revealed) .reveal-up,
+[data-reveal]:not(.is-revealed) .reveal-left,
+[data-reveal]:not(.is-revealed) .reveal-right,
+[data-reveal]:not(.is-revealed) .stagger > * {
+  opacity: 0;
+}
+
+.is-revealed .reveal-up,
+.is-revealed .stagger > * {
+  animation: reveal-up var(--duration-reveal) var(--ease-out) backwards;
+}
+
+.is-revealed .reveal-left {
+  animation: reveal-left var(--duration-reveal) var(--ease-out) backwards;
+}
+
+.is-revealed .reveal-right {
+  animation: reveal-right var(--duration-reveal) var(--ease-out) backwards;
+}
+
+/* children of .stagger follow each other 70ms apart (capped after 8) */
+.is-revealed .stagger > :nth-child(2) { animation-delay: 70ms; }
+.is-revealed .stagger > :nth-child(3) { animation-delay: 140ms; }
+.is-revealed .stagger > :nth-child(4) { animation-delay: 210ms; }
+.is-revealed .stagger > :nth-child(5) { animation-delay: 280ms; }
+.is-revealed .stagger > :nth-child(6) { animation-delay: 350ms; }
+.is-revealed .stagger > :nth-child(7) { animation-delay: 420ms; }
+.is-revealed .stagger > :nth-child(n + 8) { animation-delay: 490ms; }
+
+/* a block revealed alongside a sibling starts a beat later */
+.is-revealed .reveal-delay {
+  animation-delay: 150ms;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+
+/* side-slides must never cause horizontal scroll on narrow screens */
+[data-reveal] {
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-revealed .reveal-up,
+  .is-revealed .reveal-left,
+  .is-revealed .reveal-right,
+  .is-revealed .stagger > * {
+    animation: none;
+  }
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Keyboard users can jump past the header; visible only when focused. */
+.skip-link {
+  position: absolute;
+  left: var(--space-16);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-12) var(--space-24);
+  background: var(--maroon);
+  color: var(--text-on-dark);
+  font-size: var(--fs-button);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  top: var(--space-16);
+}
+
+/* <main> only receives focus as the skip-link target; no ring needed there. */
+#main:focus {
+  outline: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

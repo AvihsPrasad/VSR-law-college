@@ -1,0 +1,109 @@
+/* Link row — maroon left rule, brand tile, title + meta, source tag (see .claude/DESIGN.md) */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  height: 100%;
+  padding: var(--space-16) 20px var(--space-16) var(--space-16);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--maroon);
+  border-radius: var(--radius-tile);
+  background: var(--bg-white);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+
+.tile {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-tile);
+  background: var(--facebook);
+  color: var(--text-on-dark);
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* long titles: three lines, full text in the native tooltip */
+.title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.45;
+  transition: color 0.2s ease-out;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--facebook);
+}
+
+.source {
+  flex: none;
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+}
+
+.arrow {
+  flex: none;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease-out, color 0.2s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:hover {
+    border-color: var(--maroon);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .row:hover .title,
+  .row:hover .arrow {
+    color: var(--maroon);
+  }
+
+  .row:hover .arrow {
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (max-width: 560px) {
+  .source {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition: none;
+  }
+
+  .row:hover .arrow {
+    transform: none;
+  }
+}

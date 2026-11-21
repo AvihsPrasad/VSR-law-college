@@ -1,0 +1,21 @@
+.panel {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  padding: var(--space-32);
+  background: var(--maroon-soft);
+  color: var(--maroon);
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .panel {
+    max-width: 280px;
+  }
+}

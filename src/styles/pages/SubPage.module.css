@@ -1,0 +1,180 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-96);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.points li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-24);
+  padding: var(--space-16) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.index {
+  flex: none;
+  width: 48px;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  color: var(--maroon);
+}
+
+.text {
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.emblem {
+  margin-top: var(--space-24);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.blockTitle {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* key fact (e.g. eligibility) — accent-rule box like the About motto */
+.callout {
+  padding: var(--space-16) 20px;
+  border-left: 3px solid var(--maroon);
+  background: var(--maroon-soft);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* statutory bodies: index rows link down to each body's band */
+.bodyLink {
+  flex: 1;
+  color: var(--text-primary);
+  transition: color 0.2s ease-out;
+}
+
+.bodyArrow {
+  flex: none;
+  align-self: center;
+  color: var(--maroon);
+  transform: rotate(90deg);
+}
+
+.bodyLink:hover {
+  color: var(--maroon);
+}
+
+/* body intro stays in view while its (longer) lists scroll past */
+@media (min-width: 1025px) {
+  .bodyCopy {
+    position: sticky;
+    top: calc(var(--header-offset) + var(--space-24));
+  }
+}
+
+/* icon tile above each body's eyebrow, like the mega-menu tiles */
+.bodyIcon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-tile);
+  background: var(--maroon-soft);
+  color: var(--maroon);
+}
+
+/* helpline numbers (e.g. Anti-Ragging Cell) */
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+
+.contact {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-12);
+  min-height: 56px;
+  padding: var(--space-8) 20px var(--space-8) var(--space-16);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--maroon);
+  border-radius: var(--radius-tile);
+  background: var(--bg-white);
+  color: var(--maroon);
+  transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.contact > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactLabel {
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.contactValue {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact:hover {
+    border-color: var(--maroon);
+    background: var(--maroon-soft);
+  }
+}
+
+/* document cards (e.g. R&D publications) — two per row, one on phones */
+.documents {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-48);
+  }
+}
+
+@media (max-width: 440px) {
+  .documents {
+    grid-template-columns: 1fr;
+  }
+}

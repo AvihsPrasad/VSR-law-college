@@ -1,0 +1,179 @@
+/* Document card — rounded exception to the square-corner rule (see .claude/DESIGN.md §6) */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-menu);
+  height: 100%;
+  background: var(--bg-white);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+/* maroon-soft preview band; aspect-ratio keeps every card the same height */
+.preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 2 / 1;
+  max-height: 160px;
+  background: var(--maroon-soft);
+}
+
+/* event type, pinned top-left like the faculty employment badge */
+.kind {
+  position: absolute;
+  top: var(--space-12);
+  left: var(--space-12);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--bg-white);
+  color: var(--maroon);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.glyph {
+  width: 56px;
+  height: 64px;
+  transition: transform 0.2s ease-out;
+}
+
+.sheet {
+  fill: var(--bg-white);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+
+.fold {
+  fill: var(--border);
+}
+
+.lines {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.tag {
+  fill: var(--maroon);
+}
+
+.tagText {
+  fill: var(--text-on-dark);
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-16) var(--space-16) var(--space-16) 20px;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.open {
+  color: var(--text-primary);
+}
+
+/* stretch the title link over the whole card */
+.open::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.open:focus-visible {
+  outline: none;
+}
+
+.open:focus-visible::after {
+  outline: 2px solid var(--maroon);
+  outline-offset: -2px;
+  border-radius: var(--radius-menu);
+}
+
+.meta {
+  margin-top: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+/* sits above the stretched link so it stays its own target */
+.download {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--maroon);
+  background: var(--bg-white);
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+.download:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card:hover .glyph {
+    transform: scale(1.06);
+  }
+
+  .card:hover .open {
+    color: var(--maroon);
+  }
+
+  .download:hover {
+    border-color: var(--maroon);
+    background: var(--maroon);
+    color: var(--text-on-dark);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .glyph {
+    transition: none;
+  }
+
+  .card:hover,
+  .card:hover .glyph {
+    transform: none;
+  }
+}

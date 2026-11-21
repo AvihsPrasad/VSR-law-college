@@ -1,0 +1,29 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  text-align: center;
+}
+
+.icon {
+  color: var(--maroon);
+}
+
+.title {
+  max-width: 760px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-48) var(--space-120);
+  margin-top: var(--space-48);
+}
+
+@media (max-width: 760px) {
+  .stats {
+    gap: var(--space-32) var(--space-48);
+  }
+}

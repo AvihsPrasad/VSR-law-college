@@ -1,0 +1,300 @@
+/* NAAC criteria accordion — rounded exception like the mega-menu (see .claude/DESIGN.md) */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  max-width: 760px;
+  margin-bottom: var(--space-48);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-menu);
+  background: var(--bg-white);
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.open {
+  border-color: var(--maroon);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+.heading {
+  font-size: inherit;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  width: 100%;
+  padding: 20px var(--space-24);
+  border: 0;
+  border-radius: var(--radius-menu);
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+
+/* roman numeral tile, same treatment as the mega-menu icon tiles */
+.numeral {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-tile);
+  background: var(--maroon-soft);
+  color: var(--maroon);
+  font-size: var(--fs-h4);
+  font-weight: 800;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.open .numeral {
+  border-color: var(--maroon);
+  background: var(--maroon);
+  color: var(--text-on-dark);
+}
+
+.titles {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.label {
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon);
+}
+
+.title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.count {
+  flex: none;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.chevron {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--maroon);
+  transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.open .chevron {
+  transform: rotate(90deg);
+  background: var(--maroon-soft);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .item:not(.open):hover {
+    border-color: var(--maroon);
+  }
+
+  .trigger:hover .title {
+    color: var(--maroon);
+  }
+}
+
+/* height animation without measuring: grid row 0fr → 1fr */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s ease-out;
+}
+
+.open .panel {
+  grid-template-rows: 1fr;
+}
+
+.panelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* indent under the title (24px padding + 48px tile + 16px gap) */
+.metrics {
+  margin: 0 var(--space-24) var(--space-24) 88px;
+  padding: 0;
+  list-style: none;
+}
+
+.metric {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: var(--space-16);
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+
+.code {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--maroon);
+}
+
+.metricBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.metricText {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+.moreTitle {
+  margin-top: var(--space-8);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* file chip: type badge + label + size + external arrow */
+.file {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px var(--space-12) 6px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-tile);
+  background: var(--bg-white);
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  line-height: 1.35;
+  transition: border-color 0.2s ease-out, background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+.file:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+
+.type {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 30px;
+  border-radius: 6px;
+  background: var(--maroon);
+  color: var(--text-on-dark);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.doc {
+  background: var(--badge-fulltime-fg);
+}
+
+.size {
+  flex: none;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.external {
+  flex: none;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease-out, color 0.2s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .file:hover {
+    border-color: var(--maroon);
+    background: var(--maroon-soft);
+    color: var(--maroon);
+  }
+
+  .file:hover .external {
+    color: var(--maroon);
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (max-width: 760px) {
+  .trigger {
+    flex-wrap: wrap;
+    padding: var(--space-16);
+  }
+
+  .numeral {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* count drops under the title; chevron stays top-right */
+  .count {
+    order: 4;
+    width: 100%;
+    padding-left: 56px;
+  }
+
+  .metrics {
+    margin: 0 var(--space-16) var(--space-16);
+  }
+
+  .metric {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .chevron,
+  .external {
+    transition: none;
+  }
+
+  .file:hover .external {
+    transform: none;
+  }
+}

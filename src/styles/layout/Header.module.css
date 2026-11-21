@@ -1,0 +1,393 @@
+.topBar {
+  background: var(--maroon);
+  color: var(--text-on-dark);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+
+.topBarInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-24);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.topBarLinks {
+  display: flex;
+  gap: var(--space-24);
+  white-space: pre;
+}
+
+.topBarLinks a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  /* 24px minimum tap height (WCAG 2.2 target size); negative margin keeps the bar's height unchanged */
+  min-height: 24px;
+  margin: -2px 0;
+}
+
+.topBarLinks a:hover {
+  text-decoration: underline;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+}
+
+.navInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-48);
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-32);
+  font-size: var(--fs-button);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.topLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.topLink:hover,
+.topLink.active {
+  color: var(--maroon);
+  border-color: var(--maroon);
+}
+
+/* ---- dropdowns (mega-menu panel) ---- */
+/* The panel is positioned against .navInner and right-aligned to the content edge,
+   so wide panels never run off-screen. */
+.navInner {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: var(--gutter);
+  z-index: 5;
+  width: min(680px, calc(100vw - var(--gutter) * 2));
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-menu);
+  background: var(--bg-white);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
+  text-transform: none;
+  letter-spacing: 0;
+  /* closed: faded, nudged down, and unreachable by pointer and keyboard */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out), visibility 0.2s;
+}
+
+/* invisible bridge from the menu label down to the panel so the pointer can cross the gap */
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -28px;
+  left: 0;
+  right: 0;
+  height: 28px;
+}
+
+.featured,
+.more {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-16);
+  padding: var(--space-16);
+}
+
+/* secondary items: grey strip, no descriptions */
+.more {
+  border-top: 1px solid var(--border);
+  background: var(--bg-gray);
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-16);
+  padding: var(--space-12);
+  border-radius: var(--radius-menu);
+  transition: background-color 0.2s;
+}
+
+.more .item {
+  align-items: center;
+}
+
+.tile {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-tile);
+  background: var(--bg-white);
+  color: var(--maroon);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.more .tile {
+  color: var(--text-secondary);
+}
+
+.itemText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.itemTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+
+.more .itemTitle {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.arrow {
+  flex: none;
+  color: var(--maroon);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.itemDesc {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.item:hover .itemTitle,
+.item.active .itemTitle {
+  color: var(--maroon);
+}
+
+.item:hover .tile,
+.item.active .tile {
+  border-color: var(--maroon);
+  background: var(--maroon-soft);
+  color: var(--maroon);
+}
+
+.featured .item:hover {
+  background: var(--bg-gray);
+}
+
+.more .item:hover {
+  background: var(--bg-white);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .item:hover .arrow {
+    transform: translateX(3px);
+  }
+}
+
+/* open: clicked/tapped/keyboard (.expanded), or hovered on desktop with a mouse */
+.expanded .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 1121px) {
+  .hasMenu:hover .dropdown,
+  .hasMenu:has(.item:focus-visible) .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .hasMenu:hover .trigger {
+    color: var(--maroon);
+    border-color: var(--maroon);
+  }
+
+  /* just picked a child: stay shut until the pointer leaves */
+  .hasMenu.suppressed .dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+  }
+}
+
+.menuButton {
+  display: none;
+}
+
+/* nine top-level items: tighten spacing before the hamburger takes over at 1120px */
+@media (max-width: 1280px) {
+  .links {
+    gap: var(--space-24);
+  }
+}
+
+@media (max-width: 1180px) {
+  .navInner {
+    gap: var(--space-24);
+  }
+
+  .links {
+    gap: var(--space-16);
+    letter-spacing: 0.03em;
+  }
+}
+
+@media (max-width: 1120px) {
+  .topBar p {
+    display: none;
+  }
+
+  .topBarInner {
+    justify-content: center;
+  }
+
+  .menuButton {
+    display: grid;
+    place-items: center;
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    background: none;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: calc(100dvh - 140px);
+    overflow-y: auto;
+    padding: var(--space-8) var(--gutter) var(--space-24);
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .linksOpen {
+    display: flex;
+  }
+
+  .topLink {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--space-16) 0;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+
+  /* mobile: dropdowns become an inline accordion under their parent */
+  .navInner {
+    position: static;
+  }
+
+  .dropdown {
+    display: none;
+    position: static;
+    width: auto;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+
+  .dropdown::before {
+    display: none;
+  }
+
+  .expanded .dropdown {
+    display: block;
+  }
+
+  .featured,
+  .more {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: var(--space-8) 0;
+  }
+
+  .more {
+    border-top: 0;
+    background: none;
+  }
+
+  .item {
+    align-items: center;
+    padding: var(--space-8);
+  }
+
+  .tile {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* descriptions make the mobile menu too long */
+  .itemDesc {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .topBarLinks {
+    gap: var(--space-12);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .topBarLinks a[href^='mailto'] {
+    display: none;
+  }
+}

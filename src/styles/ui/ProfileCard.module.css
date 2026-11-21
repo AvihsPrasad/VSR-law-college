@@ -1,0 +1,140 @@
+/* Profile card — rounded exception to the square-corner rule (see .claude/DESIGN.md §6) */
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--bg-white);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+/* lift only for real pointers; touch taps would leave it stuck */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+/* aspect-ratio reserves the space so nothing jumps while photos load */
+.media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-photo);
+  background: var(--maroon-soft);
+}
+
+.monogram {
+  font-size: var(--fs-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--maroon-soft);
+  -webkit-text-stroke: 1.5px var(--maroon);
+}
+
+/* employment badge, pinned to the photo's top-left corner */
+.badge {
+  position: absolute;
+  top: var(--space-12);
+  left: var(--space-12);
+  padding: 6px var(--space-12);
+  border-radius: 999px;
+  font-size: var(--fs-button);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.permanent {
+  background: var(--badge-permanent-bg);
+  color: var(--badge-permanent-fg);
+}
+
+.full-time {
+  background: var(--badge-fulltime-bg);
+  color: var(--badge-fulltime-fg);
+}
+
+.part-time {
+  background: var(--badge-parttime-bg);
+  color: var(--badge-parttime-fg);
+}
+
+.guest {
+  background: var(--badge-guest-bg);
+  color: var(--badge-guest-fg);
+}
+
+.management {
+  background: var(--badge-management-bg);
+  color: var(--badge-management-fg);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-24) var(--space-16) var(--space-16);
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  padding: 0 var(--space-8) var(--space-8) var(--space-16);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-16);
+  margin: 0;
+}
+
+.stats div {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--text-secondary);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.action {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: var(--bg-gray);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.action:hover {
+  background: var(--maroon);
+  color: var(--text-on-dark);
+}

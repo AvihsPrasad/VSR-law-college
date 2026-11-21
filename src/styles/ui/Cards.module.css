@@ -1,0 +1,159 @@
+/* Why Card — sits on the maroon band */
+.why {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-32);
+  border: 1px solid var(--border-on-dark);
+  color: var(--text-on-dark);
+  text-align: center;
+  background: var(--maroon);
+  transition: background-color 0.2s;
+}
+
+.why:hover,
+.whyActive {
+  background: var(--maroon-dark);
+}
+
+.whyTitle {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+}
+
+.whyBody {
+  flex: 1;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-on-dark-muted);
+}
+
+.whyLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  width: 100%;
+  padding: var(--space-12);
+  border: 1px solid var(--border-on-dark);
+  font-size: var(--fs-button);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.whyLink:hover,
+.whyActive .whyLink {
+  background: var(--bg-white);
+  color: var(--maroon);
+}
+
+/* News Row */
+.news {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.newsNumber {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  background: var(--maroon);
+  color: var(--text-on-dark);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.news:hover .newsNumber {
+  background: var(--maroon-dark);
+}
+
+.newsText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.newsTitle {
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.news:hover .newsTitle {
+  color: var(--maroon);
+}
+
+/* Program Row */
+.program {
+  display: flex;
+  align-items: center;
+  gap: var(--space-32);
+  padding: var(--space-24) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.programIndex {
+  flex: none;
+  width: 72px;
+  font-size: var(--fs-index);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.program:hover .programIndex,
+.programActive .programIndex {
+  color: var(--maroon);
+}
+
+.programText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.programTitle {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* Outline Stat */
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.statValue {
+  font-size: var(--fs-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--maroon-soft);
+  -webkit-text-stroke: 1.5px var(--maroon);
+}
+
+@media (max-width: 760px) {
+  .program {
+    gap: var(--space-16);
+  }
+
+  .programIndex {
+    width: 48px;
+  }
+}

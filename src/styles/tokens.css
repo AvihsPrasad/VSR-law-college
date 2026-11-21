@@ -1,0 +1,92 @@
+/* Mirrors the "VSR Classic" variable collection and Classic/* text styles in Figma. */
+:root {
+  /* color */
+  --maroon: #7a1424;
+  --maroon-dark: #5c0e1a;
+  --maroon-soft: #f7ecee;
+  --bg-white: #ffffff;
+  --bg-gray: #f4f3f1;
+  --text-primary: #1b1b1b;
+  --text-secondary: #6b6b6b;
+  --text-muted: #858585; /* ≥3:1 on white & bg-gray — large/decorative text only */
+  --text-on-dark: #ffffff;
+  --text-on-dark-muted: #e8c8cd;
+  --border: #e4e2de;
+  --border-on-dark: #a4465a;
+
+  /* spacing */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+  --space-120: 120px;
+
+  --container: 1200px;
+  --gutter: var(--space-120);
+
+  /* type */
+  --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fs-display: 54px;
+  --fs-h2: 36px;
+  --fs-h3: 19px;
+  --fs-h4: 16px;
+  --fs-stat: 64px;
+  --fs-index: 40px;
+  --fs-body: 15px;
+  --fs-small: 13px;
+  --fs-eyebrow: 11px;
+  --fs-button: 12px;
+
+  --shadow-card: 0 20px 48px rgba(0, 0, 0, 0.12);
+  --radius-card: 24px;
+  --radius-feature: 32px;
+  --radius-menu: 12px;
+  --radius-tile: 10px;
+
+  /* motion — scroll reveals (Facilities). Strong ease-out: fast start, gentle settle */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --duration-reveal: 700ms;
+
+  /* employment badges — each pair ≥5.6:1 contrast */
+  --badge-permanent-bg: #e3f3e8;
+  --badge-permanent-fg: #1e6b34;
+  --badge-fulltime-bg: #e5eefa;
+  --badge-fulltime-fg: #1d4f91;
+  --badge-parttime-bg: #fcefd8;
+  --badge-parttime-fg: #8a4b00;
+  --badge-guest-bg: #efe7f9;
+  --badge-guest-fg: #5b2d8c;
+  --badge-management-bg: var(--bg-gray);
+  --badge-management-fg: #4a4a4a;
+
+  --radius-photo: 16px;
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.18);
+  --shadow-float-hover: 0 12px 32px rgba(0, 0, 0, 0.24);
+
+  /* brand colour for the Facebook tile in link rows (white icon on it) */
+  --facebook: #1877f2;
+
+  /* sticky nav height + breathing room, so anchors and focused elements aren't hidden under it */
+  --header-offset: 104px;
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --gutter: var(--space-48);
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --gutter: var(--space-16);
+    --fs-display: 38px;
+    --fs-h2: 28px;
+    --fs-stat: 48px;
+    --fs-index: 30px;
+  }
+}
